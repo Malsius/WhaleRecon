@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "whalerecon"
+version = "1.0.0"
+description="Tool used to run AutoRecon in a container and auto generate HTML reports"
+authors = [
+    "Malsius",
+    "Nemrode",
+    "alexlyy",
+    "theophilegreg"
+]
+readme = "README.md"
+repository = "https://github.com/Malsius/WhaleRecon"
+packages = [
+    {include = "whalerecon"}
+]
+
+[tool.poetry.dependencies]
+docker = "~6.0.1"
+rich = "~13.3.3"
+
+[tool.poetry.scripts]
+whalerecon = "whalerecon.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
