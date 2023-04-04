@@ -171,7 +171,7 @@ def main():
     except docker.errors.ImageNotFound:
         pretty_pull(client)
 
-    parser = argparse.ArgumentParser(add_help=False, allow_abbrev=False, description="Tool used to run AutoRecon in a container and auto generate HTML reports", usage="whalerecon [-h] [-V] [-v] -o <output_path> [autorecon_options]")
+    parser = argparse.ArgumentParser(add_help=False, allow_abbrev=False, description="Tool used to run AutoRecon in a container and auto generate HTML reports", usage="whalerecon [-h] [-V] -o [-v] <output_path> [autorecon_options]")
 
     # Used for WhaleRecon
     parser.add_argument("-h", "--help", action="store_true", help="Print help for WhaleRecon and AutoRecon.")
