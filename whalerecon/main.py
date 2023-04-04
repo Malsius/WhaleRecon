@@ -7,6 +7,9 @@ import shutil
 from rich.progress import Progress
 
 
+VERSION = "1.0.1"
+
+
 def get_autorecon_cmd(autorecon_options):
     return f"autorecon {' '.join(autorecon_options)}"
 
@@ -84,6 +87,23 @@ def print_help(parser, client):
     exit(0)
 
 
+def print_version(client):
+    print(f"WhaleRecon v{VERSION}")
+    container = client.containers.run(
+        name="whalerecon",
+        network_mode="host",
+        working_dir="/opt/whalerecon",
+        detach=True,
+        image="malsius/whalerecon",
+        command="bash",
+        tty=True
+    )
+    run_command(container, "autorecon --version")
+    container.kill()
+    container.remove()
+    exit(0)
+
+
 def run_command(container, command):
     output = container.exec_run(cmd=f"bash -c '{command}'", tty=True, stream=True)[1]
     for line in output:
@@ -96,6 +116,7 @@ def run_command(container, command):
 
 def copy_output(output_path, tmp_results, tmp_reports):
     os.makedirs(output_path)
+    print(f"Copying output to {output_path}")
     shutil.copytree(tmp_results, os.path.join(output_path, "results"))
     shutil.copytree(tmp_reports, os.path.join(output_path, "reports"))
 
@@ -178,6 +199,8 @@ def main():
 
     if args.help:
         print_help(parser, client)
+    elif args.version:
+        print_version(client)
     elif not args.output:
         parser.error("the following arguments are required: -o/--output")
     else:

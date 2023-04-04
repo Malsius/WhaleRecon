@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "whalerecon"
-version = "1.0.0"
+version = "1.0.1"
 description="Tool used to run AutoRecon in a container and auto generate HTML reports"
 authors = [
     "Malsius",
