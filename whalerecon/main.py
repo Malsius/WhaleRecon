@@ -175,7 +175,7 @@ def main():
 
     # Used for WhaleRecon
     parser.add_argument("-h", "--help", action="store_true", help="Print help for WhaleRecon and AutoRecon.")
-    parser.add_argument("-V", "--version", action="store_true", help="Prints WhaleRecon and AutoRecon version.")  # TODO
+    parser.add_argument("-V", "--version", action="store_true", help="Prints WhaleRecon and AutoRecon version.")
     parser.add_argument("-v", "--verbose", action="count", help="Enable verbose output. Repeat for more verbosity.")
     parser.add_argument("-o", "--output", help="The output directory for results.", nargs=1)
 
